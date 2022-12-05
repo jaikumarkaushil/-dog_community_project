@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -38,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'dog_community_app',
-    'custom_admin_portal'
+    'custom_admin_portal',
 ]
 
 MIDDLEWARE = [
@@ -69,6 +70,11 @@ TEMPLATES = [
     },
 ]
 
+
+MEDIA_URL = 'assets/img/'
+MEDIA_ROOT =BASE_DIR / 'dog_community_app/static/'
+SESSION_SAVE_EVERY_REQUEST = True
+
 WSGI_APPLICATION = 'dog_community.wsgi.application'
 
 
@@ -82,7 +88,7 @@ DATABASES = {
         'USER': 'root',
         'HOST':'localhost',
         'PORT':'3306',
-        'PASSWORD':'admin'
+        'PASSWORD':'Keytomysql@2'
     }
 }
 
@@ -119,11 +125,24 @@ USE_L10N = True
 
 USE_TZ = True
 
+# Email Backend
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
+EMAIL_HOST_USER = 'jaikaushil055@gmail.com' #sender's emailid
+EMAIL_HOST_PASSWORD = 'MyDemoAccount' #password associated with above email-id
+
+
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.2/howto/static-files/
+# https://docs.djangoproject.com/en/3.2/howto/static-files/s
 
-STATIC_URL = '/static/'
+STATIC_URL = 'dog_community_app/static/'
+STATIC_ROOT = 'dog_community/'
+STATICFILES_DIRS = [BASE_DIR/ 'dog_community_app/static']
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
